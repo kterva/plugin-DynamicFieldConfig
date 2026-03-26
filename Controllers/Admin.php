@@ -200,7 +200,7 @@ class Admin extends Controller {
                 }
 
                 $sanitizedConfig[$entityClass][$fieldKey] = [
-                    'label' => filter_var($fieldConfig['label'] ?? '', FILTER_SANITIZE_STRING),
+                    'label' => htmlspecialchars($fieldConfig['label'] ?? '', ENT_QUOTES, 'UTF-8'),
                     'required' => $isRequired,
                     'enabled' => $isEnabled
                 ];

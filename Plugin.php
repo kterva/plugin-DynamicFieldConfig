@@ -200,9 +200,7 @@ class Plugin extends \MapasCulturais\Plugin {
             
             // Usamos MutationObserver para no cargar la CPU con setIntervals
             var observer = new MutationObserver(function(mutations) {
-                if (document.querySelector('body.is-editable') || document.querySelector('body.user-is-admin')) {
-                    debounceApply();
-                }
+                debounceApply();
             });
             
             window.addEventListener('load', function() {
@@ -211,7 +209,7 @@ class Plugin extends \MapasCulturais\Plugin {
             });
             
             function applyDOMOverrides() {
-                if (!MapasCulturais || !MapasCulturais.entity || !MapasCulturais.isEditable) return;
+                if (!MapasCulturais || !MapasCulturais.entity) return;
                 
                 for (var key in overrides) {
                     var conf = overrides[key];
