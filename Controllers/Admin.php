@@ -218,6 +218,6 @@ class Admin extends Controller {
 
         file_put_contents($configFile, $json);
         
-        $app->redirect($app->createUrl('dynamic-field-config', 'index'), 200);
+        $app->redirect($app->createUrl('dynamic-field-config', 'index'));
     }
 }

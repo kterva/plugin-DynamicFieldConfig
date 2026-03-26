@@ -106,11 +106,17 @@ class Plugin extends \MapasCulturais\Plugin {
                      }
                       if (isset($config['required'])) {
                           $isEnabled = !isset($config['enabled']) || ($config['enabled'] != 0 && $config['enabled'] !== false);
+                          
+                          // FIX: Evitar "Indirect modification of overloaded property" (PHP Notice/Fatal)
+                          $validations = $def->validations ?? [];
+                          
                           if (($config['required'] == 1 || $config['required'] === true) && $isEnabled) {
-                              $def->validations['required'] = i::__('Este campo es obligatorio.');
+                              $validations['required'] = i::__('Este campo es obligatorio.');
                           } else {
-                              unset($def->validations['required']);
+                              unset($validations['required']);
                           }
+                          
+                          $def->validations = $validations;
                       }
                  }
             }
